@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "481115480812",
+    "project_id": "mycotes",
+    "storage_bucket": "mycotes.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:481115480812:android:71372e824c0148b7997bc9",
+        "android_client_info": {
+          "package_name": "in.uiquest.mynotes"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqe49oOE5e2A_2NbicNYCMPog19INKvgc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
