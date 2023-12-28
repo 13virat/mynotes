@@ -60,19 +60,43 @@ class _LoginViewState extends State<LoginView> {
                         hintText: 'ENTER YOUR Password HERE'),
                   ),
                   TextButton(
+                    // onPressed: () async {
+                    //   final email = _email.text;
+                    //   final password = _password.text;
+                    //   try {
+                    //     final userCredential = await FirebaseAuth.instance
+                    //         .signInWithEmailAndPassword(
+                    //             email: email, password: password);
+                    //     print(userCredential);
+                    //   } on FirebaseAuthException catch (e) {
+                    //     if (e.code == 'user-not-found') {
+                    //       print("user not found");
+                    //     } else {
+                    //       print('something else happened');
+                    //       print(e.code);
+                    //     }
+                    //   }
+                    // }
+                    //
                     onPressed: () async {
                       final email = _email.text;
                       final password = _password.text;
                       try {
+                        print("Attempting login with email: $email");
                         final userCredential = await FirebaseAuth.instance
                             .signInWithEmailAndPassword(
                                 email: email, password: password);
-                        print(userCredential);
+                        print(
+                            "Login successful: ${userCredential.user?.email}");
                       } on FirebaseAuthException catch (e) {
+                        print("Error during login: ${e.code}, ${e.message}");
                         if (e.code == 'user-not-found') {
-                          print("user not found");
+                          print("User not found");
+                        } else if (e.code == 'wrong-password') {
+                          print("Wrong password provided");
+                        } else {
+                          print("Unexpected error: ${e.message}");
                         }
-                        print(e.code);
                       }
                     },
                     child: const Text('Login'),
