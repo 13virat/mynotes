@@ -1,12 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
-
 import 'package:flutter/material.dart';
 import 'package:mynotes/constants/routes.dart';
 import 'package:mynotes/utilities/show_error_dialog.dart';
 
 class LoginView extends StatefulWidget {
-  const LoginView({super.key});
-
+  const LoginView({Key? key}) : super(key: key);
   @override
   State<LoginView> createState() => _LoginViewState();
 }
@@ -18,7 +16,6 @@ class _LoginViewState extends State<LoginView> {
   void initState() {
     _email = TextEditingController();
     _password = TextEditingController();
-
     super.initState();
   }
 
@@ -42,24 +39,25 @@ class _LoginViewState extends State<LoginView> {
             enableSuggestions: false,
             autocorrect: false,
             keyboardType: TextInputType.emailAddress,
-            decoration:
-                const InputDecoration(hintText: 'Enter your email here'),
+            decoration: const InputDecoration(
+              hintText: 'Enter your email here',
+            ),
           ),
           TextField(
             controller: _password,
             obscureText: true,
             enableSuggestions: false,
             autocorrect: false,
-            decoration:
-                const InputDecoration(hintText: 'Enter your Password here'),
+            decoration: const InputDecoration(
+              hintText: 'Enter your password here',
+            ),
           ),
           TextButton(
             onPressed: () async {
               final email = _email.text;
               final password = _password.text;
               try {
-                final userCredential =
-                    await FirebaseAuth.instance.signInWithEmailAndPassword(
+                await FirebaseAuth.instance.signInWithEmailAndPassword(
                   email: email,
                   password: password,
                 );
@@ -76,7 +74,7 @@ class _LoginViewState extends State<LoginView> {
                 } else if (e.code == 'wrong-password') {
                   await showErrorDialog(
                     context,
-                    'Wrong Password',
+                    'Wrong credentials',
                   );
                 } else {
                   await showErrorDialog(
@@ -91,28 +89,6 @@ class _LoginViewState extends State<LoginView> {
                 );
               }
             },
-
-            // onPressed: () async {
-            //   final email = _email.text;
-            //   final password = _password.text;
-            //   try {
-            //     print("Attempting login with email: $email");
-            //     final userCredential = await FirebaseAuth.instance
-            //         .signInWithEmailAndPassword(
-            //             email: email, password: password);
-            //     print(
-            //         "Login successful: ${userCredential.user?.email}");
-            //   } on FirebaseAuthException catch (e) {
-            //     print("Error during login: ${e.code}, ${e.message}");
-            //     if (e.code == 'user-not-found') {
-            //       print("User not found");
-            //     } else if (e.code == 'wrong-password') {
-            //       print("Wrong password provided");
-            //     } else {
-            //       print("Unexpected error: ${e.message}");
-            //     }
-            //   }
-            // },
             child: const Text('Login'),
           ),
           TextButton(
@@ -122,7 +98,7 @@ class _LoginViewState extends State<LoginView> {
                 (route) => false,
               );
             },
-            child: const Text('Not registered yet? Register Here!'),
+            child: const Text('Not registered yet? Register here!'),
           )
         ],
       ),
