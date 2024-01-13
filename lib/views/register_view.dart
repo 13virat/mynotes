@@ -37,7 +37,7 @@ class _RegisterViewState extends State<RegisterView> {
       body: Column(
         children: [
           TextField(
-            controller: _email,
+            controller: _email,   
             enableSuggestions: false,
             autocorrect: false,
             keyboardType: TextInputType.emailAddress,
